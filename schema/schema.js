@@ -1,4 +1,6 @@
 const graphql = require('graphql');
+const axios = require('axios');
+const BASE_URL = 'http://localhost:3000';
 
 const {
     GraphQLObjectType,
@@ -6,19 +8,6 @@ const {
     GraphQLInt,
     GraphQLSchema,
 } = graphql;
-
-const users = [
-    {
-        id: '23',
-        firstName: 'Bill',
-        age: 20
-    },
-    {
-        id: '42',
-        firstName: 'Emma',
-        age: 25
-    }
-];
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -39,9 +28,10 @@ const RootQuery = new GraphQLObjectType({
                     type: GraphQLString
                 }
             },
+            // Goes and grabs the real value
             resolve(parentValue, args) {
-                // Goes and grabs the real value
-                return users.find(user => user.id === args.id);
+                return axios.get(`${BASE_URL}/users/${args.id}`)
+                            .then(resp => resp.data);
             }
         }
     }
