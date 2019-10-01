@@ -3,12 +3,32 @@
     {
       "id": "23",
       "firstName": "Bill",
-      "age": 20
+      "age": 20,
+      "companyId": "1"
+    },
+    {
+      "id": "35",
+      "firstName": "Alex",
+      "age": 23,
+      "companyId": "2"
     },
     {
       "id": "42",
       "firstName": "Emma",
-      "age": 25
+      "age": 25,
+      "companyId": "2"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "description": "iphone"
+    },
+    {
+      "id": "2",
+      "name": "IBM",
+      "description": "PC"
     }
   ]
 }

@@ -9,12 +9,28 @@ const {
     GraphQLSchema,
 } = graphql;
 
+const CompanyType = new GraphQLObjectType({
+    name: 'Company',
+    fields: {
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+    }
+});
+
 const UserType = new GraphQLObjectType({
     name: 'User',
     fields: {
         id: { type: GraphQLString},
         firstName: { type: GraphQLString},
         age: { type: GraphQLInt},
+        company: {
+            type: CompanyType,
+            resolve(parentValue) {
+                return axios.get(`${BASE_URL}/companies/${parentValue.companyId}`)
+                            .then(res => res.data);
+            }
+        }
     }
 });
 
@@ -31,7 +47,7 @@ const RootQuery = new GraphQLObjectType({
             // Goes and grabs the real value
             resolve(parentValue, args) {
                 return axios.get(`${BASE_URL}/users/${args.id}`)
-                            .then(resp => resp.data);
+                            .then(resp => res.data);
             }
         }
     }
