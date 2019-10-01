@@ -47,7 +47,19 @@ const RootQuery = new GraphQLObjectType({
             // Goes and grabs the real value
             resolve(parentValue, args) {
                 return axios.get(`${BASE_URL}/users/${args.id}`)
-                            .then(resp => res.data);
+                            .then(res => res.data);
+            }
+        },
+        company: {
+            type: CompanyType,
+            args: {
+                id: {
+                    type: GraphQLString
+                }
+            },
+            resolve(parentValue, args) {
+                return axios.get(`${BASE_URL}/companies/${args.id}`)
+                            .then(res = res.data);
             }
         }
     }
