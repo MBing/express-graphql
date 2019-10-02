@@ -5,5 +5,7 @@ Using `express-graphql` and `GraphiQL` to test connection.
 
 ## Start
 `yarn install`
+
 `yarn json:server` 
+
 `yarn dev`
